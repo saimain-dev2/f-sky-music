@@ -9,3 +9,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/songs', 'SongController');
+
+Route::post('/s', 'SongController@index');
