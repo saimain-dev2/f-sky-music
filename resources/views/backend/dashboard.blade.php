@@ -102,7 +102,8 @@
                         <th>Artist</th>
                         <th>Album</th>
                         <th>Category</th>
-                        <th>Uploaded At</th>
+                        <th>Uploaded</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -112,7 +113,8 @@
                         <th>Artist</th>
                         <th>Album</th>
                         <th>Category</th>
-                        <th>Uploaded At</th>
+                        <th>Uploaded</th>
+                        <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -124,6 +126,12 @@
                         <td>{{$song->album_id}}</td>
                         <td>{{$song->category_id}}</td>
                         <td>{{$song->updated_at}}</td>
+                        <td>
+                            <audio controls src="{{$song->source}}">
+                                Your browser does not support the
+                                <code>audio</code> element.
+                            </audio>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
