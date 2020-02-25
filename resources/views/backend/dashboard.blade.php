@@ -103,7 +103,6 @@
                         <th>Album</th>
                         <th>Category</th>
                         <th>Uploaded</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -114,24 +113,21 @@
                         <th>Album</th>
                         <th>Category</th>
                         <th>Uploaded</th>
-                        <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach($songs as $song)
+                    @php
+                    $song_album = App\Model\Album::where('id', '=', $song->album_id)->get();
+                    $song_category = App\Model\Category::where('id', '=', $song->category_id)->get();
+                    @endphp
                     <tr>
                         <td>{{$loop->index + 1}}</td>
                         <td>{{$song->name}}</td>
                         <td>{{$song->artist}}</td>
-                        <td>{{$song->album_id}}</td>
-                        <td>{{$song->category_id}}</td>
-                        <td>{{$song->updated_at}}</td>
-                        <td>
-                            <audio controls src="{{$song->source}}">
-                                Your browser does not support the
-                                <code>audio</code> element.
-                            </audio>
-                        </td>
+                        <td>{{$song_album[0]->name}}</td>
+                        <td>{{$song_category[0]->name}}</td>
+                        <td>{{ date('d M y', strtotime($song->updated_at)) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -156,4 +152,14 @@
 
 <!-- Page level custom scripts -->
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.player').on('click', function() {
+            $(this).
+        })
+
+
+    })
+</script>
 @endsection

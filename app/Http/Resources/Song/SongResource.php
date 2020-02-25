@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Song;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SongResource extends JsonResource
@@ -14,16 +15,24 @@ class SongResource extends JsonResource
      */
     public function toArray($request)
     {
+        $category = DB::table('categories')->where('id', $this->category_id)->get();
+        $album = DB::table('albums')->where('id', $this->album_id)->get();
+
         return [
             'name' => $this->name,
             'artist' => $this->artist,
-            'category_id' => $this->category_id,
-            'album_id' => $this->album_id,
-            'cover' => $this->cover,
+           'category' => [
+                'category_id' => $category[0]->id,
+                'category_name' => $category[0]->name,
+            ],
+            'album' =>[
+                'album_id' => $album[0]->id,
+                'album_name' => $album[0]->name,
+            ],
             'lyric' => $this->lyric,
-            'href' => [
-                'source' => $this->source,
-            ]
+            'cover' => $this->cover,
+            'source' => $this->source,
         ];
+        // ret $category;
     }
 }
