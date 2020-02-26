@@ -21,3 +21,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('admin.home');
 });
+
+
+Route::get('/p', function () {
+    echo public_path();
+});

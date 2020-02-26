@@ -19,4 +19,9 @@ class Song extends Model
     {
         return $this->hasOne('App\Model\Album');
     }
+
+    public function artist()
+    {
+        return $this->hasOne('App\Model\Artist');
+    }
 }

@@ -29,6 +29,7 @@ class SongCollection extends Resource
                 'album_id' => $album[0]->id,
                 'album_name' => $album[0]->name,
             ],
+            'cover_link' => $this->cover_link,
             'cover' => $this->cover,
             'detail' => route('songs.show', $this->id)
             

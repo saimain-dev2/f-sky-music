@@ -6,6 +6,8 @@
 
 <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('css/select2-bootstrap4.css')}}">
 @endsection
 @section('main-content')
 <!-- Content Row -->
@@ -19,10 +21,16 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Songs
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$songs->count()}}</div>
+                    </div>
+
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$songs->count()}} Songs</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-list-music fa-2x text-gray-300"></i>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add_song">Add
+                            Song</button>
                     </div>
                 </div>
             </div>
@@ -35,12 +43,17 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Albums
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Album
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$albums->count()}}</div>
+                    </div>
+
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$albums->count()}} Albums</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-album fa-2x text-gray-300"></i>
+                        <button class="btn btn-sm btn-success">Add Album</button>
                     </div>
                 </div>
             </div>
@@ -53,15 +66,17 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Categories</div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$categories->count()}}</div>
-                            </div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Categories
                         </div>
                     </div>
+
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$categories->count()}} Categories</div>
+                    </div>
                     <div class="col-auto">
-                        <i class="fab fa-typo3 fa-2x text-gray-300"></i>
+                        <button class="btn btn-sm btn-info">Add Category</button>
                     </div>
                 </div>
             </div>
@@ -87,10 +102,11 @@
     </div>
 </div>
 
-<!-- DataTales Example -->
+@if($songs->count() > 0)
 <div class="card shadow mb-4 d-none d-md-block">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Songs Overview</h6>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -135,11 +151,72 @@
         </div>
     </div>
 </div>
+@else
+<div class="text-center mt-5">
+    <p>No Song Data</p>
+</div>
+@endif
+
 
 <!-- Content Row -->
 <div class="row">
 
 
+</div>
+
+
+<!-- Add Song Modal -->
+<div class="modal fade" id="add_song" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase text-md font-weight-bold" id="staticBackdropLabel">Add New Song
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <input class="form-control" type="text" placeholder="Song Name">
+                    <br>
+                    <select name="" id="" class="form-control select-category" style="width: 100%">
+                        <option value="" disabled selected>Song Artist</option>
+                        @foreach($albums as $album)
+                        <option value="{{$album->id}}">{{$album->name}}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="" id="" class="form-control select-category" style="width: 100%">
+                                <option value="" disabled selected>Category</option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select name="" id="" class="form-control select-category" style="width: 100%">
+                                <option value="" disabled selected>Album</option>
+                                @foreach($albums as $album)
+                                <option value="{{$album->id}}">{{$album->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
@@ -152,14 +229,15 @@
 
 <!-- Page level custom scripts -->
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.player').on('click', function() {
-            $(this).
-        })
 
-
-    })
+        });
+        $('.select-category').select2({
+            theme: 'bootstrap4',
+        });
+    });
 </script>
 @endsection

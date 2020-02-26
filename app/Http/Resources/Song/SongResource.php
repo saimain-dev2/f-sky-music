@@ -30,6 +30,7 @@ class SongResource extends JsonResource
                 'album_name' => $album[0]->name,
             ],
             'lyric' => $this->lyric,
+            'cover_link' => $this->cover_link,
             'cover' => $this->cover,
             'source' => $this->source,
         ];
