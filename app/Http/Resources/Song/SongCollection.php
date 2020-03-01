@@ -17,10 +17,14 @@ class SongCollection extends Resource
     {
         $category = DB::table('categories')->where('id', $this->category_id)->get();
         $album = DB::table('albums')->where('id', $this->album_id)->get();
+        $artist = DB::table('artists')->where('id', $this->artist_id)->get();
 
         return [
             'name' => $this->name,
-            'artist' => $this->artist,
+            'artist' => [
+                'artist_id' => $artist[0]->id,
+                'artist_name' => $artist[0]->name,
+            ],
             'category' => [
                 'category_id' => $category[0]->id,
                 'category_name' => $category[0]->name,

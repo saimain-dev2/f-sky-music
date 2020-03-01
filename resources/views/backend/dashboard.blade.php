@@ -183,8 +183,8 @@
                     <br>
                     <select name="" id="" class="form-control select-category" style="width: 100%">
                         <option value="" disabled selected>Song Artist</option>
-                        @foreach($albums as $album)
-                        <option value="{{$album->id}}">{{$album->name}}</option>
+                        @foreach($artists as $artist)
+                        <option value="{{$artist->id}}">{{$artist->name}}</option>
                         @endforeach
                     </select>
                     <br>
