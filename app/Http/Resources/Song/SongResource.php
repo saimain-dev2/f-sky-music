@@ -15,25 +15,24 @@ class SongResource extends JsonResource
      */
     public function toArray($request)
     {
-        $category = DB::table('categories')->where('id', $this->category_id)->get();
-        $album = DB::table('albums')->where('id', $this->album_id)->get();
 
         return [
+            'cover' => $this->cover,
             'name' => $this->name,
-            'artist' => $this->artist,
-           'category' => [
-                'category_id' => $category[0]->id,
-                'category_name' => $category[0]->name,
+            'artist' => [
+                'artist_name' => $this->artist->name,
+                'artist_detail' => route('artist.show', $this->artist->id),
             ],
-            'album' =>[
-                'album_id' => $album[0]->id,
-                'album_name' => $album[0]->name,
+            'category' => [
+                'category_name' => $this->category->name,
+                'category_detail' => route('category.show', $this->category->id),
+            ],
+            'album' => [
+                'album_name' => $this->album->name,
+                'album_detail' => route('album.show', $this->album->id),
             ],
             'lyric' => $this->lyric,
-            'cover_link' => $this->cover_link,
-            'cover' => $this->cover,
             'source' => $this->source,
         ];
-        // ret $category;
     }
 }

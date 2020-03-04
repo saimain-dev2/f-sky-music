@@ -4,11 +4,7 @@ use App\Model\Song;
 use App\Model\Album;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/d', 'Admin\DashboardController@dashboard');
 
-Route::get('/album/{id}/songs', function ($id) {
-    return Album::find($id)->song;
-});
 
 Route::get('/', function () {
     return view('layouts.app');
@@ -23,6 +19,5 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::get('/p', function () {
-    echo public_path();
+Route::get('/d', function () {
 });

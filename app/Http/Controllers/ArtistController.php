@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Artist\ArtistCollection;
+use App\Http\Resources\Artist\ArtistResource;
 use App\Model\Artist;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        return ArtistCollection::collection(Artist::paginate(6));
     }
 
     /**
@@ -46,7 +48,7 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        //
+        return new ArtistResource($artist);
     }
 
     /**

@@ -47,9 +47,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
 
         'admin' => [
@@ -119,7 +118,7 @@ return [
             'throttle' => 60,
         ],
 
-         'admins' => [
+        'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 15,

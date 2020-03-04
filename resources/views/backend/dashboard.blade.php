@@ -26,7 +26,7 @@
                 </div>
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$songs->count()}} Songs</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$songs->count()}}</div>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add_song">Add
@@ -50,7 +50,7 @@
                 </div>
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$albums->count()}} Albums</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$albums->count()}}</div>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-sm btn-success">Add Album</button>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$categories->count()}} Categories</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{$categories->count()}}</div>
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-sm btn-info">Add Category</button>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Album;
+use App\Model\Album;
+use App\Http\Resources\Album\AlbumCollection;
+use App\Http\Resources\Album\AlbumResource;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -14,7 +16,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        return AlbumCollection::collection(Album::paginate(6));
     }
 
     /**
@@ -46,7 +48,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        return new AlbumResource($album);
     }
 
     /**

@@ -20,7 +20,6 @@ class CreateSongsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('album_id')->unsigned();
             $table->text('cover');
-            $table->text('cover_link');
             $table->text('lyric');
             $table->text('source');
             $table->timestamps();

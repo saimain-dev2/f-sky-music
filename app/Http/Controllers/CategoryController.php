@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Http\Resources\Category\CategoryCollection;
+use App\Http\Resources\Category\CategoryResource;
+use App\Model\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return CategoryCollection::collection(Category::paginate(6));
     }
 
     /**
@@ -46,7 +48,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return new CategoryResource($category);
     }
 
     /**
